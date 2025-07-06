@@ -1,5 +1,6 @@
 import {NextRequest} from "next/server";
 import OpenAI from "openai";
+import {ChatCompletionMessageParam} from "openai/resources/chat/completions";
 
 const client = new OpenAI({
   apiKey: process.env.CHAT_GPT_PROJECT_KEY!,
@@ -11,7 +12,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const {universalPrompt, message} = body;
 
-  const messages = universalPrompt
+  const messages: ChatCompletionMessageParam[] = universalPrompt
     ? [
         {role: "system", content: universalPrompt},
         {role: "user", content: message},
