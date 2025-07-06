@@ -8,10 +8,12 @@ import {
   createContext,
 } from "react";
 
+type Message =  {answer: string; question: string};
+
 const HistoryCtx: Context<
   | {
-      newHistories: (e: string) => void;
-      messageHistories: string[];
+      newHistories: (e: Message) => void;
+      messageHistories: Message[];
       globalPrompt: string;
     }
   | undefined
@@ -27,8 +29,8 @@ export const useHistory = () => {
 };
 
 export const HistoryProvider = ({children}: PropsWithChildren) => {
-  const [messages, setMessages] = useState<string[]>([]);
-  const updateMessages = (msg: string) => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const updateMessages = (msg: Message) => {
     setMessages(cur => [msg, ...cur]);
   };
 

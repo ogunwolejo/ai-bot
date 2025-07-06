@@ -20,7 +20,7 @@ const SideBar = memo(() => {
           </Link>
           {messageHistories.map((history, idx) => (
             <Fragment key={idx}>
-              <SideBarItems content={history} />
+              <SideBarItems content={history.answer} />
             </Fragment>
           ))}
         </div>
