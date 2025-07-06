@@ -5,26 +5,25 @@ import {
   createContext,
   PropsWithChildren,
   useContext,
-  useEffect,
   useState,
 } from "react";
 
-type Props = {
+type UniversalPromptContextType = {
   handleAcceptPrompt: (e: string) => void;
   promptValue: string;
   promptHistory: string[];
-} | null;
+};
 
-const UniversalPromptCtx: Context<Props> = createContext({
-  promptHistory: [],
-  promptValue: "",
-  handleAcceptPrompt: e => {},
-  loading: false,
-});
+const UniversalPromptCtx = createContext<UniversalPromptContextType | undefined>(undefined);
 
 export const useUniversalPromptCtx = () => {
-  return useContext(UniversalPromptCtx);
+  const ctx = useContext(UniversalPromptCtx);
+  if (!ctx) {
+    throw new Error("useUniversalPromptCtx must be used within a UniversalPromptProvider");
+  }
+  return ctx;
 };
+
 
 export const UniversalPromptProvider = ({children}: PropsWithChildren) => {
   const [uPrompt, setUPrompt] = useState<string>("");

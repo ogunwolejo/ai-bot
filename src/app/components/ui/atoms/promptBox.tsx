@@ -16,7 +16,7 @@ import {ClipLoader} from "react-spinners";
 
 type Props = {
   initialValue?: string;
-  handleModelCall: (e) => Promise<void>;
+  handleModelCall: () => Promise<void>;
   updateMessage: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   setMessage: (value: ((prevState: string) => string) | string) => void;
   loading: boolean;
@@ -44,7 +44,7 @@ export const PromptBox: NamedExoticComponent<Props> = memo(
       setValue(""); // reset value
     };
 
-    const handlePressKey: KeyboardEventHandler = (e: KeyboardEvent) => {
+    const handlePressKey: KeyboardEventHandler<HTMLTextAreaElement> = e => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault(); // Prevents a new line
         setMessage(value);

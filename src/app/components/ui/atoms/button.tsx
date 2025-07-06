@@ -1,10 +1,10 @@
 "use client";
 
-import {InputHTMLAttributes, memo, NamedExoticComponent} from "react";
+import {ButtonHTMLAttributes, memo, NamedExoticComponent} from "react";
 import clsx from "clsx";
 
 export const Button: NamedExoticComponent<
-  InputHTMLAttributes<HTMLButtonElement>
+  ButtonHTMLAttributes<HTMLButtonElement>
 > = memo(({children, ...props}) => (
   <button
     {...props}
@@ -12,6 +12,7 @@ export const Button: NamedExoticComponent<
       "text-roboto text-base lg:text-lg cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
       props.className,
     )}
+    type={props.type}
   >
     {children}
   </button>

@@ -10,14 +10,13 @@ import {
 
 type Message = {answer: string; question: string};
 
-const HistoryCtx: Context<
+const HistoryCtx = createContext<
   | {
       newHistories: (e: Message) => void;
       messageHistories: Message[];
-      globalPrompt: string;
     }
   | undefined
-> = createContext(undefined);
+>(undefined);
 
 export const useHistory = () => {
   const ctx = useContext(HistoryCtx);
@@ -31,7 +30,7 @@ export const useHistory = () => {
 export const HistoryProvider = ({children}: PropsWithChildren) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const updateMessages = (msg: Message) => {
-    setMessages(cur => [msg, ...cur]);
+    setMessages(cur => [...cur, msg]);
   };
 
   return (

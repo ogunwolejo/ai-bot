@@ -10,11 +10,9 @@ import {
   useState,
 } from "react";
 import {useUniversalPromptCtx} from "@/context/universal";
-import {ClipLoader} from "react-spinners";
 
 export const PromptSetting: NamedExoticComponent = memo(() => {
-  const {loading, promptHistory, handleAcceptPrompt, promptValue} =
-    useUniversalPromptCtx();
+  const {handleAcceptPrompt, promptValue} = useUniversalPromptCtx();
   const [universalPrompt, setUniversalPrompt] = useState<string>("");
   const handleUpdateUniversalPrompt: ChangeEventHandler<HTMLTextAreaElement> = (
     e: ChangeEvent<HTMLTextAreaElement>,
@@ -45,11 +43,7 @@ export const PromptSetting: NamedExoticComponent = memo(() => {
             handleAcceptPrompt(universalPrompt);
           }}
         >
-          {loading ? (
-            <ClipLoader loading={loading} size={20} />
-          ) : (
-            "Create new prompt"
-          )}
+          Create new prompt
         </Button>
         <Button
           type="button"
@@ -59,7 +53,7 @@ export const PromptSetting: NamedExoticComponent = memo(() => {
             handleAcceptPrompt("");
           }}
         >
-          {loading ? <ClipLoader loading={loading} size={20} /> : "Reset"}
+          Reset
         </Button>
       </div>
 
@@ -68,31 +62,6 @@ export const PromptSetting: NamedExoticComponent = memo(() => {
           <p>prompt has been updated</p>
         </div>
       ) : null}
-
-      {/*{promptHistory.length ? (*/}
-      {/*  <>*/}
-      {/*    <h6 className="text-sm text-center font-bold text-black text-gray-200">*/}
-      {/*      Prompt history*/}
-      {/*    </h6>*/}
-      {/*    <div*/}
-      {/*      id="prompt-history"*/}
-      {/*      className="space-y-2 grid grid-col-2 lg:grid-cols-4 gap-4"*/}
-      {/*    >*/}
-      {/*      {promptHistory.slice(0, 8).map((history, idx) => (*/}
-      {/*        <div*/}
-      {/*            onClick={() => {*/}
-      {/*              handleAcceptPrompt(history);*/}
-      {/*            }}*/}
-      {/*          role="button"*/}
-      {/*          key={idx}*/}
-      {/*          className="cursor-pointer rounded-lg h-20 max-w-[300px] text-start truncate flex justify-center items-center px-4 py-4 bg-gray-500/40 text-black font-semibold font-roboto text-xs lg:text-sm"*/}
-      {/*        >*/}
-      {/*          {history}*/}
-      {/*        </div>*/}
-      {/*      ))}*/}
-      {/*    </div>*/}
-      {/*  </>*/}
-      {/*) : null}*/}
     </div>
   );
 });
