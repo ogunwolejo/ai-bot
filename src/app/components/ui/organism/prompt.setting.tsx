@@ -37,7 +37,7 @@ export const PromptSetting: NamedExoticComponent = memo(() => {
           placeholder="new prompt ........"
         />
       </div>
-      <div className="flex justify-end items-center w-auto md:w-[80%] lg:w-[60%] xl:w-[40%] mx-auto">
+      <div className="flex justify-end items-center w-auto md:w-[80%] lg:w-[60%] xl:w-[40%] mx-auto gap-4">
         <Button
           type="button"
           className="rounded-xl capitalize bg-blue-600 text-white font-semibold w-[250px] h-[60px]"
@@ -49,6 +49,20 @@ export const PromptSetting: NamedExoticComponent = memo(() => {
             <ClipLoader loading={loading} size={20} />
           ) : (
             "Create new prompt"
+          )}
+        </Button>
+        <Button
+            type="button"
+            className="rounded-xl capitalize outline-red-600 border-red-600 ring-2 ring-red-600 outline-2 bg-white text-red-600 font-semibold w-[150px] h-[60px]"
+            onClick={() => {
+              setUniversalPrompt("")
+              handleAcceptPrompt("");
+            }}
+        >
+          {loading ? (
+              <ClipLoader loading={loading} size={20} />
+          ) : (
+              "Reset"
           )}
         </Button>
       </div>
