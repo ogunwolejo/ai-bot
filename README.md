@@ -1,7 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Requirements
+A chagpt token is required, it can be gotten from the openAi developer account for any individual
+After getting the token, insert it into the env variable using this key *CHAT_GPT_PROJECT_KEY*
 
+.env
+- CHAT_GPT_PROJECT_KEY
+
+## Getting Started
 First, run the development server:
 
 ```bash

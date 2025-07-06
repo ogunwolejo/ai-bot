@@ -8,7 +8,7 @@ import {
   createContext,
 } from "react";
 
-type Message =  {answer: string; question: string};
+type Message = {answer: string; question: string};
 
 const HistoryCtx: Context<
   | {

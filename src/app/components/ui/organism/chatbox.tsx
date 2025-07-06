@@ -7,7 +7,8 @@ import {
   ChangeEventHandler,
   ChangeEvent,
   useRef,
-  useEffect, Fragment,
+  useEffect,
+  Fragment,
 } from "react";
 import clsx from "clsx";
 import {ChatResponse} from "@/app/components/ui/atoms/chat.response";
@@ -15,7 +16,6 @@ import {useHistory} from "@/context/history";
 import {useUniversalPromptCtx} from "@/context/universal";
 import {ChatHistory} from "@/app/components/ui/atoms/chat.history";
 import {PromptBox} from "@/app/components/ui/atoms/promptBox";
-
 
 const Chatbot: NamedExoticComponent = memo(() => {
   const {newHistories, messageHistories} = useHistory();
@@ -95,38 +95,56 @@ const Chatbot: NamedExoticComponent = memo(() => {
   const hasContent = airesponse.length || messageHistories.length;
 
   return (
-      <div className="flex flex-col justify-center items-center h-full w-full">
-        <h1 className={clsx("text-xl font-bold text-center text-muted font-inter tracking-widest text-xl lg:text-2xl xl:text-3xl", hasContent ? "hidden" : "block")}>
-          AI Chatbot
-        </h1>
+    <div className="flex flex-col justify-center items-center h-full w-full">
+      <h1
+        className={clsx(
+          "text-xl font-bold text-center text-muted font-inter tracking-widest text-xl lg:text-2xl xl:text-3xl",
+          hasContent ? "hidden" : "mb-2",
+        )}
+      >
+        AI Chatbot
+      </h1>
 
-        <div className={clsx(hasContent ? "fixed bottom-0 left-0 z-50 w-full  pl-24 pt-3 pr-3 pb-1" : "")}>
-          <PromptBox
-              handleModelCall={handleModelCall}
-              initialValue={message}
-              updateMessage={updateMessage}
-              setMessage={setMessage}
-          />
-        </div>
+      <div
+        className={clsx(
+          hasContent
+            ? "fixed bottom-0 left-0 z-50 w-full  pl-24 pt-3 pr-3 pb-1"
+            : "w-full relative",
+        )}
+      >
+        <PromptBox
+          handleModelCall={handleModelCall}
+          initialValue={message}
+          updateMessage={updateMessage}
+          setMessage={setMessage}
+        />
+      </div>
 
-
-        <div className={`flex-1 overflow-y-auto ${hasContent ? 'pb-24' : ''}`}>
-          <div className="space-y-6 w-auto md:w-[60%] xl:w-[40%] mx-auto min-h-full">
-            {messageHistories.filter(msg => msg.answer !== airesponse).map((msgHistory, idx) => (
-                <Fragment key={idx}>
-                  <ChatHistory cnt={msgHistory.answer} question={msgHistory.question}/>
-                </Fragment>
+      <div className={`overflow-y-auto ${hasContent ? "pb-24 flex-1" : ""}`}>
+        <div className="space-y-6 w-auto md:w-[60%] xl:w-[40%] mx-auto min-h-full">
+          {messageHistories
+            .filter(msg => msg.answer !== airesponse)
+            .map((msgHistory, idx) => (
+              <Fragment key={idx}>
+                <ChatHistory
+                  cnt={msgHistory.answer}
+                  question={msgHistory.question}
+                />
+              </Fragment>
             ))}
 
-            {airesponse.length ? (
-                <ChatResponse loading={loading} cnt={airesponse} question={message}/>
-            ) : null}
+          {airesponse.length ? (
+            <ChatResponse
+              loading={loading}
+              cnt={airesponse}
+              question={message}
+            />
+          ) : null}
 
-            <div ref={endRef}/>
-          </div>
+          <div ref={endRef} />
         </div>
-
       </div>
+    </div>
   );
 });
 

@@ -52,18 +52,14 @@ export const PromptSetting: NamedExoticComponent = memo(() => {
           )}
         </Button>
         <Button
-            type="button"
-            className="rounded-xl capitalize outline-red-600 border-red-600 ring-2 ring-red-600 outline-2 bg-white text-red-600 font-semibold w-[150px] h-[60px]"
-            onClick={() => {
-              setUniversalPrompt("")
-              handleAcceptPrompt("");
-            }}
+          type="button"
+          className="rounded-xl capitalize outline-red-600 border-red-600 ring-2 ring-red-600 outline-2 bg-white text-red-600 font-semibold w-[150px] h-[60px]"
+          onClick={() => {
+            setUniversalPrompt("");
+            handleAcceptPrompt("");
+          }}
         >
-          {loading ? (
-              <ClipLoader loading={loading} size={20} />
-          ) : (
-              "Reset"
-          )}
+          {loading ? <ClipLoader loading={loading} size={20} /> : "Reset"}
         </Button>
       </div>
 
