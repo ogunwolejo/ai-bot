@@ -13,7 +13,7 @@ export const ChatResponse: NamedExoticComponent<Props> = memo(
   ({loading, cnt, question}) => (
     <div
       id="chatgpt-response"
-      className="min-w-full w-full mt-4 flex flex-col justify-start items-center space-y-6 lg:space-y-8"
+      className="min-w-full w-full mt-4 pb-6 flex flex-col justify-start items-center space-y-6 lg:space-y-8"
     >
       <div className="w-full rounded-xl p-6 lg:p-8 bg-transparent border border-transparent max-h-[400px] overflow-auto no-scrollbar space-y-8">
         <p className="text-black italics font-inter text-sm lg:text-base text-end">
